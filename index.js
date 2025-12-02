@@ -31,14 +31,14 @@ const waterSize = 512;
 // TODO Replace this by a THREE.DirectionalLight and use the provided matrix (check that it's an Orthographic matrix as expected)
 const light = [0., 0., -1.];
 const lightCamera = new THREE.OrthographicCamera(-1.2, 1.2, 1.2, -1.2, near, far);
-lightCamera.position.set(0, -1.0, 2);
+lightCamera.position.set(0., 0., 1.5);
 lightCamera.lookAt(0, 0, 0);
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, width / height, 0.01, 100);
 
 // Side-on, “looking straight”, centered on the pool
-camera.position.set(0, -2.2, -0.2);    // X, Y, Z
+camera.position.set(0, -1.5, 2);    // X, Y, Z
 camera.up.set(0, 0, 1);
 camera.lookAt(waterPosition);
 
