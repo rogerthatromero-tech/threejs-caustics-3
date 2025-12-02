@@ -290,6 +290,10 @@ class Water {
         derivatives: true
       };
 
+      // 🔴 NEW: render water from both top AND bottom, with same shading
+      this.material.side = THREE.DoubleSide;
+      this.material.transparent = true;
+
       this.mesh = new THREE.Mesh(this.geometry, this.material);
       this.mesh.position.set(waterPosition.x, waterPosition.y, waterPosition.z);
     });
@@ -304,6 +308,7 @@ class Water {
   }
 
 }
+
 
 
 // This renders the environment map seen from the light POV.
