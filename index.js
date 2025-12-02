@@ -31,7 +31,7 @@ const waterSize = 512;
 // TODO Replace this by a THREE.DirectionalLight and use the provided matrix (check that it's an Orthographic matrix as expected)
 const light = [0., 0., -1.];
 const lightCamera = new THREE.OrthographicCamera(-1.2, 1.2, 1.2, -1.2, near, far);
-lightCamera.position.set(0., 0., 1.5);
+lightCamera.position.set(0, -1.0, 2);
 lightCamera.lookAt(0, 0, 0);
 
 const scene = new THREE.Scene();
