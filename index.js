@@ -125,7 +125,7 @@ const floorGeometry = new THREE.PlaneBufferGeometry(100, 100, 1, 1);
 const objLoader = new THREE.OBJLoader();
 let shark;
 const sharkLoaded = new Promise((resolve) => {
-  objLoader.load('assets/Camologo.obj', (sharkGeometry) => {
+  objLoader.load('assets/Camologotilted.obj', (sharkGeometry) => {
     sharkGeometry = sharkGeometry.children[0].geometry;
     sharkGeometry.computeVertexNormals();
     sharkGeometry.scale(0.12, 0.12, 0.12);
