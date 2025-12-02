@@ -38,7 +38,7 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, width / height, 0.01, 100);
 
 // Side-on, “looking straight”, centered on the pool
-camera.position.set(0, -2.6, 2);    // X, Y, Z
+camera.position.set(0, -2.6, -0.3);    // X, Y, Z
 camera.up.set(0, 0, 1);
 camera.lookAt(waterPosition);
 
