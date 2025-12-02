@@ -4,8 +4,9 @@ document.body.appendChild(stats.domElement);
 
 const canvas = document.getElementById('canvas');
 
-const width = canvas.width;
-const height = canvas.height;
+let width = window.innerWidth;
+let height = window.innerHeight;
+
 
 // Colors
 const black = new THREE.Color('black');
@@ -48,6 +49,17 @@ scene.add(camera);
 const renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true, alpha: true});
 renderer.setSize(width, height);
 renderer.autoClear = false;
+
+window.addEventListener('resize', () => {
+  width = window.innerWidth;
+  height = window.innerHeight;
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(width, height);
+});
+
 
 // Create mouse Controls
 const controls = new THREE.OrbitControls(
