@@ -34,12 +34,16 @@ const lightCamera = new THREE.OrthographicCamera(-1.2, 1.2, 1.2, -1.2, near, far
 lightCamera.position.set(0., 0., 1.5);
 lightCamera.lookAt(0, 0, 0);
 
-// Create Renderer
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, width / height, 0.01, 100);
-camera.position.set(-1.5, -1.5, 1);
+
+// Side-on, “looking straight”, centered on the pool
+camera.position.set(0, -2.2, waterPosition.z);  // X, Y, Z
 camera.up.set(0, 0, 1);
+camera.lookAt(waterPosition);
+
 scene.add(camera);
+
 
 const renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true, alpha: true});
 renderer.setSize(width, height);
