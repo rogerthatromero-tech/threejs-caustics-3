@@ -8,6 +8,7 @@ let width = window.innerWidth;
 let height = window.innerHeight;
 
 
+
 // Colors
 const black = new THREE.Color('black');
 const white = new THREE.Color('white');
