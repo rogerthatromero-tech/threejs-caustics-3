@@ -16,5 +16,7 @@ void main() {
   refractedColor.g = texture2D(envMap, refractedPosition[1] * 0.5 + 0.5).g;
   refractedColor.b = texture2D(envMap, refractedPosition[2] * 0.5 + 0.5).b;
 
-  gl_FragColor = vec4(mix(refractedColor, reflectedColor, clamp(reflectionFactor, 0., 1.)), 1.);
+  // Fixed 50/50 blend so top and bottom use the same balance
+  gl_FragColor = vec4(mix(refractedColor, reflectedColor, 0.5), 1.0);
 }
+
