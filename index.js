@@ -76,6 +76,19 @@ controls.maxPolarAngle = Math.PI - 0.1;
 controls.minDistance = 1.5;
 controls.maxDistance = 3.;
 
+controls.enableZoom = false;
+controls.enableRotate = false;
+// optional, if you don’t want sideways panning either:
+controls.enablePan = false;
+
+function moveCameraForward(1.5) {
+  const forward = new THREE.Vector3();
+  camera.getWorldDirection(forward);   // forward = direction camera is looking
+  camera.position.add(forward.multiplyScalar(distance));
+}
+
+
+
 // Target for computing the water refraction
 const temporaryRenderTarget = new THREE.WebGLRenderTarget(width, height);
 
