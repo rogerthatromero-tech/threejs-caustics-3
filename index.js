@@ -7,8 +7,6 @@ const canvas = document.getElementById('canvas');
 let width = window.innerWidth;
 let height = window.innerHeight;
 
-
-
 // Colors
 const black = new THREE.Color('black');
 const white = new THREE.Color('white');
@@ -39,13 +37,12 @@ lightCamera.lookAt(0, 0, 0);
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, width / height, 0.01, 100);
 
-// Side-on, “looking straight”, centered on the pool
+// Side-on, centered on the pool – tweak these three numbers only
 camera.position.set(0, -4, 0);    // X, Y, Z
 camera.up.set(0, 0, 1);
 camera.lookAt(waterPosition);
 
 scene.add(camera);
-
 
 const renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true, alpha: true});
 renderer.setSize(width, height);
@@ -61,7 +58,6 @@ window.addEventListener('resize', () => {
   renderer.setSize(width, height);
 });
 
-
 // Create mouse Controls
 const controls = new THREE.OrbitControls(
   camera,
@@ -76,18 +72,10 @@ controls.maxPolarAngle = Math.PI - 0.1;
 controls.minDistance = 1.5;
 controls.maxDistance = 3.;
 
+// Lock view: no zoom/rotate/pan
 controls.enableZoom = false;
 controls.enableRotate = false;
-// optional, if you don’t want sideways panning either:
 controls.enablePan = false;
-
-function moveCameraForward(1.5) {
-  const forward = new THREE.Vector3();
-  camera.getWorldDirection(forward);   // forward = direction camera is looking
-  camera.position.add(forward.multiplyScalar(distance));
-}
-
-
 
 // Target for computing the water refraction
 const temporaryRenderTarget = new THREE.WebGLRenderTarget(width, height);
@@ -210,7 +198,6 @@ const skybox = cubetextureloader.load([
 
 scene.background = skybox;
 
-
 class WaterSimulation {
 
   constructor() {
@@ -289,7 +276,6 @@ class WaterSimulation {
 
 }
 
-
 class Water {
 
   constructor() {
@@ -316,7 +302,7 @@ class Water {
         derivatives: true
       };
 
-      // 🔴 NEW: render water from both top AND bottom, with same shading
+      // render water from both top AND bottom
       this.material.side = THREE.DoubleSide;
       this.material.transparent = true;
 
@@ -334,8 +320,6 @@ class Water {
   }
 
 }
-
-
 
 // This renders the environment map seen from the light POV.
 // The resulting texture contains (posx, posy, posz, depth) in the colors channels.
@@ -385,7 +369,6 @@ class EnvironmentMap {
 
 }
 
-
 class Caustics {
 
   constructor() {
@@ -425,7 +408,6 @@ class Caustics {
       this._waterMaterial.blendSrcAlpha = THREE.OneFactor;
       this._waterMaterial.blendDstAlpha = THREE.ZeroFactor;
 
-
       this._waterMaterial.side = THREE.DoubleSide;
       this._waterMaterial.extensions = {
         derivatives: true
@@ -457,7 +439,6 @@ class Caustics {
   }
 
 }
-
 
 class Environment {
 
@@ -502,7 +483,6 @@ class Environment {
   }
 
 }
-
 
 class Debug {
 
@@ -552,7 +532,6 @@ const environment = new Environment();
 const caustics = new Caustics();
 
 const debug = new Debug();
-
 
 // Main rendering loop
 function animate() {
